@@ -1,3 +1,5 @@
+# File created by: Liam Newberry
+
 from time import sleep
 from random import choice
 import pygame as pg
@@ -5,8 +7,8 @@ import os
 
 game_folder = os.path.dirname(__file__)
 
-WIDTH = 1400
-HEIGHT = 800
+WIDTH = 1440
+HEIGHT = 960
 FPS = 30
 
 WHITE = (255,255,255)
@@ -20,11 +22,9 @@ pg.mixer.init()
 pg.display.set_caption("Rock, Paper, Scissors")
 
 click = pg.MOUSEBUTTONUP
-screen = pg.display.set_mode((0,0), pg.FULLSCREEN)
+screen = pg.display.set_mode((WIDTH, HEIGHT))
 clock = pg.time.Clock()
 
-#pick_image = pg.image.load(os.path.join(game_folder, "pick.jpg")).convert()
-#pick_image_rect = pick_image.get_rect()
 rock_image = pg.image.load(os.path.join(game_folder, "rock.jpg")).convert()
 rock_image_rect = rock_image.get_rect()
 rock_image_rect.x = 50
@@ -45,16 +45,21 @@ choose_image = pg.image.load(os.path.join(game_folder, "choose.jpg")).convert()
 choose_image_rect = choose_image.get_rect()
 choose_image_rect.x = 280
 choose_image_rect.y = 340
+# pixel_image = pg.image.load(os.path.join(game_folder, "pixel.jpg")).convert()
+# pixel_image_rect = pixel_image.get_rect()
+# pixel_image_rect.x = 0
+# pixel_image_rect.y = 959
 
 running = True
 def intialize():
     screen.fill(BLACK)
     screen.blit(rock_image,rock_image_rect)
-    #screen.blit(pick_image, pick_image_rect)
     screen.blit(paper_image, paper_image_rect)
     screen.blit(scissors_image, scissors_image_rect)
     screen.blit(choose_image, choose_image_rect)
     screen.blit(close_image, close_image_rect)
+    # screen.blit(pixel_image, pixel_image_rect)
+
 def main():
     running = True
     while running:
@@ -67,6 +72,7 @@ def main():
                 if close_image_rect.collidepoint(mcoords):
                     running = False
         intialize()
+
 
         pg.display.flip()
 
